@@ -1,0 +1,15 @@
+[project]
+name = "d4rl-to-lerobot"
+version = "0.1.0"
+description = "Convert D4RL dataset to LeRobot dataset format."
+authors = [
+    "Khalil Meftah <kmeftah.khalil@gmail.com>",
+]
+repository = "https://github.com/s1lent4gnt/D4RL_to_LeRobot"
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    "minari",
+    "lerobot @ git+https://github.com/huggingface/lerobot.git",
+]
