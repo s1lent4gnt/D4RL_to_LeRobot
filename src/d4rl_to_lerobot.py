@@ -1,7 +1,6 @@
 import shutil
 import minari
 import torch
-from pathlib import Path
 import numpy as np
 from lerobot.common.datasets.lerobot_dataset import LEROBOT_HOME, LeRobotDataset
 
@@ -20,11 +19,6 @@ def build_features(observation_shape, action_shape):
         },
         "next.reward": {
             "dtype": "float32",
-            "shape": (1,),
-            "names": None,
-        },
-        "next.success": {
-            "dtype": "bool",
             "shape": (1,),
             "names": None,
         },
@@ -79,7 +73,6 @@ def convert_d4rl_to_lerobot(d4rl_dataset_name: str, repo_id: str, task_descripti
                 "observation.state": torch.from_numpy(episode_data.observations[frame_idx]).float(),
                 "action": torch.from_numpy(episode_data.actions[frame_idx]).float(),
                 "next.reward": torch.tensor([episode_data.rewards[frame_idx]], dtype=torch.float32),
-                "next.success": torch.tensor([episode_data.terminations[frame_idx]], dtype=torch.bool),
                 "next.done": torch.tensor([np.logical_or(episode_data.terminations[frame_idx], episode_data.truncations[frame_idx])], dtype=torch.bool)
             }
             
